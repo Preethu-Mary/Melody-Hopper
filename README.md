@@ -1,41 +1,35 @@
 # Project Title
-Good* Coffee
+Melody Hopper
 
 ## Overview
 
-Good* Coffee is a place for third-wave coffee enthusiasts to find and keep track of the best cafés.
+Melody Hopper is an engaging and interactive game where players control a character that jumps through a vibrant world by identifying and singing musical notes. 
+The objective is to jump the farthest and achieve the highest score by correctly matching the musical notes displayed on the screen.
 
 ### Problem
 
-Third-wave coffee is coffee made with high-quality beans typically sourced from individual farms and roasted more lightly to bring out their distinctive flavors. There is no certain way to know the quality of a café's coffee before purchasing and having your first sip. When looking for a third-wave café in a given area, people generally have to go through the time-consuming process of doing a Google search for coffee near a location then manually analyze images, reviews, etc. for each café before deciding if it might be a café serving a high-quality cup of third-wave coffee.
+Melody Hopper aims to address the challenge of learning sight-reading in music by providing an engaging and interactive platform. Many aspiring musicians struggle with identifying and accurately singing musical notes, which can hinder their progress. By combining gameplay with music education, Melody Jump helps users develop their pitch recognition and sight-reading skills in a fun, motivating environment. Players will enhance their musical literacy while enjoying the excitement of a game, making learning more accessible and enjoyable.
 
 ### User Profile
 
-- Coffee drinkers:
-    - looking for a café close to their current location
-    - looking for a café close to a given location for the future
-    - that want to keep track of the cafés they've tried
+- Musicians:
+    - Music enthusiasts who enjoy singing and want to improve their pitch recognition skills 
+       while having fun.
+    - Music instructors who want to incorporate a fun, interactive tool into their lessons.
 
 ### Features
 
-- As a user, I want to be able to find the closest café close to my current location
-- As a user, I want to be able to find the closest café close to any given location
-- As a user, I want to be able to find the highest-rated café within a certain distance from any given location
+- As a user, I want to be able to sing or hum notes displayed on the screen to improve my pitch recognition skills.
+- As a user, I want to be able to receive instant feedback on my accuracy when singing notes to track my progress.
+- As a user, I want to be able to choose different difficulty levels to match my skill level and challenge myself.
+- As a user, I want to be able to see my scores and achievements after each game session to monitor my improvement.
 
-- As a user, I want to be able to create an account to manage my visited cafés
-- As a user, I want to be able to login to my account to manage my visited cafés
-
-- As a logged in user, I want to be able to rate a visited café out of 5 coffee cups
-- As a logged in user, I want to be able to update a rating of a café out of 5 coffee cups
-- As a logged in user, I want to be able to see my visited cafés
-- As a logged in user, I want to be able to filter my visited cafés by location
 
 ## Implementation
 
 ### Tech Stack
 
 - React
-- TypeScript
 - MySQL
 - Express
 - Client libraries: 
@@ -45,19 +39,18 @@ Third-wave coffee is coffee made with high-quality beans typically sourced from 
 - Server libraries:
     - knex
     - express
-    - bcrypt for password hashing
 
 ### APIs
 
-- No external APIs will be used for the first sprint
+- Audio Recognition API - Web Audio API
+- Access Microphone - Media Devices API
 
 ### Sitemap
 
 - Home page
-- List cafés
-- View + Rate a café
-- Register
-- Login
+- Game page
+- Levels page
+- Instructions page
 
 ### Mockups
 
