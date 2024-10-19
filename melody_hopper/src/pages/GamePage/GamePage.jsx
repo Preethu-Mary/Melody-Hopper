@@ -1,34 +1,42 @@
 import NoteBox from '../../Components/NoteBox/NoteBox';
+import NoteLines from '../../Components/NoteLines/NoteLines';
 import './GamePage.scss';
 
 const GamePage = () => {
 
     const notesData = [
-        { note: "B", top: "8" },
-        { note: "A#", top: "16" },
-        { note: "A", top: "24" },
-        { note: "G#", top: "32" },
-        { note: "G", top: "40" },
-        { note: "F#", top: "48" },
-        { note: "F", top: "56" },
-        { note: "E", top: "64" },
-        { note: "D#", top: "72" },
-        { note: "D", top: "80" },
-        { note: "C#", top: "88" },
-        { note: "C", top: "96" },
+        { note: "B", top: "10" },
+        { note: "A#", top: "17.3" },
+        { note: "A", top: "24.8" },
+        { note: "G#", top: "32.2" },
+        { note: "G", top: "39.5" },
+        { note: "F#", top: "47" },
+        { note: "F", top: "54.5" },
+        { note: "E", top: "61.8" },
+        { note: "D#", top: "69.2" },
+        { note: "D", top: "76.8" },
+        { note: "C#", top: "84.1" },
+        { note: "C", top: "91.5" },
     ];
 
-    const inputString = "A B A B A B A B"; // Your input string
+    const inputString = "A A# B C C# D D# E F F# G G# A A# B B"; 
     const inputNotes = inputString.split(" "); 
     return (
+        <div className="game-page">
+        <NoteLines notesData={notesData} />
         <div className="container">
-        {inputNotes.map((note, index) => {
-            // Find the corresponding note data
-            const noteData = notesData.find(n => n.note === note);
-            return noteData ? (
-                <NoteBox  key={`${note}-${index}`} note={note} top={noteData.top} left= {index *8} />
-            ) : null;
-        })}
+            {inputNotes.map((note, index) => {
+                const noteData = notesData.find(n => n.note === note);
+                return noteData ? (
+                    <NoteBox 
+                        key={`${note}-${index}`} 
+                        note={note} 
+                        top={noteData.top} 
+                        left={(index + 1) * 6}
+                    />
+                ) : null;
+            })}
+        </div>
     </div>
     );
   };

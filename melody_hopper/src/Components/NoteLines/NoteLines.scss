@@ -1,0 +1,31 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%; 
+    width: 100%;
+    color: white;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.sidebar-note {
+    position: absolute;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.note-label {
+    color: white;
+    margin-bottom: 5px;
+}
+
+.note-line {
+    border: 1px solid white; 
+    margin: 0;
+    width: 100%;
+}
