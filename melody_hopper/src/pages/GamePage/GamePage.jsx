@@ -1,7 +1,7 @@
 import NoteBox from '../../Components/NoteBox/NoteBox';
 import NoteLines from '../../Components/NoteLines/NoteLines';
 import MicButton from '../../Components/MicButton/MicButton';
-import { noteFromPitch, frequencyFromNoteNumber, centsOffFromPitch } from '../../utils/pitchtrack.js';
+import { noteFromFrequency } from '../../utils/pitchtrack.js';
 import './GamePage.scss';
 
 const GamePage = () => {
@@ -21,14 +21,12 @@ const GamePage = () => {
         { note: "C", top: "91.5" },
     ];
 
-    const noteString = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-    const inputString = "A A# B C C# D D# E F F# G G# A A# B B"; 
+    const inputString = "A A# C C C# D D# E F F# G G# A A# B B"; 
     const inputNotes = inputString.split(" "); 
 
     const handleFrequency = (frequency) => {
-        let midiNote = noteFromPitch(frequency);
-        let note = noteString[midiNote % 12];
-        console.log(note);
+        let midiNote = noteFromFrequency(frequency);
+        console.log(midiNote);
     };
 
     return (
