@@ -1,3 +1,5 @@
+// Helper functions taken from https://github.com/cwilso/PitchDetect/blob/main/js/pitchdetect.js
+
 export const autoCorrelate = (buf, sampleRate) => {
     const SIZE = buf.length;
     let rms = 0;
@@ -41,4 +43,17 @@ export const autoCorrelate = (buf, sampleRate) => {
     if (a) T0 = T0 - b / (2 * a);
 
     return sampleRate / T0;
+};
+
+export const noteFromPitch = (frequency) => {
+    const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
+    return Math.round(noteNum) + 69;
+};
+
+export const frequencyFromNoteNumber = (note) => {
+    return 440 * Math.pow(2, (note - 69) / 12);
+};
+
+export const centsOffFromPitch = (frequency, note) => {
+    return Math.floor(1200 * Math.log(frequency / frequencyFromNoteNumber(note)) / Math.log(2));
 };

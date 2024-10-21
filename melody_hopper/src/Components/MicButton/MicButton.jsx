@@ -2,7 +2,7 @@ import './MicButton.scss';
 import { useRef, useState, useEffect } from 'react';
 import { autoCorrelate } from '../../utils/pitchtrack.js';
 
-const MicButton = () => {
+const MicButton = ({getFrequency}) => {
     const mic = useRef(null);
     const constraints = {
         audio: true,
@@ -22,7 +22,10 @@ const MicButton = () => {
 
         analyser.current.getFloatTimeDomainData(buffer.current);
         let frequencyInHz = autoCorrelate(buffer.current, audioContext.current.sampleRate);
-        console.log(frequencyInHz);
+
+        if (frequencyInHz !== -1) {
+            getFrequency(frequencyInHz);
+        }
 
         rafID.current = requestAnimationFrame(getPitch);
     };
