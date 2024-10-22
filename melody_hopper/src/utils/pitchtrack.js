@@ -8,7 +8,7 @@ export const noteFromFrequency = (frequency) => {
     return noteString[midiNote % 12];
 };
 
-export const getMicrophoneStream = async (constraints, audioContext, source, analyser, buffer, rafID, getFrequency, micRef) => {
+export const getMicrophoneStream = async (constraints, audioContext, source, analyser, buffer, rafID, getPitch, micRef) => {
     try {
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         audioContext.current = new AudioContext();
@@ -22,9 +22,10 @@ export const getMicrophoneStream = async (constraints, audioContext, source, ana
         const detectPitch = () => {
             analyser.current.getFloatTimeDomainData(buffer.current);
             const frequency = amdf(buffer.current);
+            let note = noteFromFrequency(frequency);
 
-            if (frequency) {
-                getFrequency(frequency);
+            if (note) {
+                getPitch(note);
             }
 
             rafID.current = requestAnimationFrame(detectPitch);

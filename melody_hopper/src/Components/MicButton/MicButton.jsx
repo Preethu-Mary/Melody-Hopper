@@ -2,7 +2,7 @@ import './MicButton.scss';
 import { useRef, useState, useEffect } from 'react';
 import { getMicrophoneStream, stopMicrophoneStream } from '../../utils/pitchtrack.js'; 
 
-const MicButton = ({ getFrequency }) => {
+const MicButton = ({ getPitch }) => {
     const mic = useRef(null);
     const constraints = { audio: true, video: false };
 
@@ -15,7 +15,7 @@ const MicButton = ({ getFrequency }) => {
 
     const main = () => {
         if (!isTracking) {
-            getMicrophoneStream(constraints, audioContext, source, analyser, buffer, rafID, getFrequency, mic);
+            getMicrophoneStream(constraints, audioContext, source, analyser, buffer, rafID, getPitch, mic);
             mic.current.innerHTML = "Disable mic";
         } else {
             stopMicrophoneStream(source, audioContext, rafID);

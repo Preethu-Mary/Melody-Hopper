@@ -1,10 +1,16 @@
+import { useState, useRef, useEffect } from 'react';
 import NoteBox from '../../Components/NoteBox/NoteBox';
 import NoteLines from '../../Components/NoteLines/NoteLines';
 import MicButton from '../../Components/MicButton/MicButton';
-import { noteFromFrequency } from '../../utils/pitchtrack.js';
 import './GamePage.scss';
 
 const GamePage = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [consecutiveCount, setConsecutiveCount] = useState(0);
+    const [noteColors, setNoteColors] = useState(Array(12).fill('black'));
+
+    const currentIndexRef = useRef(currentIndex);
+    const consecutiveCountRef = useRef(consecutiveCount);
 
     const notesData = [
         { note: "B", top: "10" },
@@ -24,30 +30,68 @@ const GamePage = () => {
     const inputString = "A A# C C C# D D# E F F# G G# A A# B B"; 
     const inputNotes = inputString.split(" "); 
 
-    const handleFrequency = (frequency) => {
-        let midiNote = noteFromFrequency(frequency);
-        console.log(midiNote);
+    useEffect(() => {
+        currentIndexRef.current = currentIndex;
+    }, [currentIndex]);
+
+    useEffect(() => {
+        consecutiveCountRef.current = consecutiveCount;
+    }, [consecutiveCount]);
+
+    const handlePitch = (sungNote) => {
+        const expectedNote = inputNotes[currentIndexRef.current];
+        
+        if (sungNote === expectedNote) {
+            setConsecutiveCount(prevCount => {
+                const newCount = prevCount + 1;
+
+                if (newCount >= 10) {
+                    setNoteColors(prevColors => {
+                        const newColors = [...prevColors];
+                        newColors[currentIndexRef.current] = 'green';
+                        return newColors;
+                    });
+                    setCurrentIndex(prevIndex => {
+                        const nextIndex = Math.min(prevIndex + 1, inputNotes.length - 1);
+                        return nextIndex;
+                    });
+                    return 0;
+                }
+
+                return newCount;
+            });
+        } else {
+            setConsecutiveCount(0);
+            setNoteColors(prevColors => {
+                const newColors = [...prevColors];
+                newColors[currentIndexRef.current] = 'red';
+                return newColors;
+            });
+        }
     };
 
     return (
         <div className="game-page">
-            <MicButton getFrequency={handleFrequency}/>
+            <MicButton getPitch={handlePitch} />
             <NoteLines notesData={notesData} />
             <div className="game-page__container">
                 {inputNotes.map((note, index) => {
                     const noteData = notesData.find(n => n.note === note);
+                    const color = noteColors[index];
+                   
                     return noteData ? (
                         <NoteBox 
                             key={`${note}-${index}`} 
                             note={note} 
                             top={noteData.top} 
                             left={(index + 3) * 6}
+                            color={color}
                         />
                     ) : null;
                 })}
             </div>
-    </div>
+        </div>
     );
-  };
-  
-  export default GamePage;
+};
+
+export default GamePage;

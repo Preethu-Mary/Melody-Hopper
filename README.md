@@ -36,6 +36,7 @@ Melody Hopper aims to address the challenge of learning sight-reading in music b
     - react
     - react-router
     - axios
+    - pitchfinder
 - Server libraries:
     - knex
     - express
@@ -44,7 +45,6 @@ Melody Hopper aims to address the challenge of learning sight-reading in music b
 
 - Audio Recognition API - Web Audio API
 - Access Microphone - Media Devices API
-- Helper function called autoCorrelate to detect the pitch from https://github.com/cwilso/PitchDetect/tree/main
 
 ### Sitemap
 
@@ -60,3 +60,4 @@ Melody Hopper aims to address the challenge of learning sight-reading in music b
 - Make it a Multi players game
 - Show leaderboards
 
+Has to be played in quiet place
