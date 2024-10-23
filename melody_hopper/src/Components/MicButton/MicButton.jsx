@@ -31,7 +31,7 @@ const MicButton = ({ getPitch }) => {
     }, []);
 
     return (
-        <button className="micButton" ref={mic} onClick={main}>
+        <button className="mic" ref={mic} onClick={main}>
             <i className="bi bi-mic"></i>
         </button>
     );
