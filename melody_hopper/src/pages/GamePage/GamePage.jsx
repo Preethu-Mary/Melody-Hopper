@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import NoteBox from '../../Components/NoteBox/NoteBox';
 import NoteLines from '../../Components/NoteLines/NoteLines';
 import MicButton from '../../Components/MicButton/MicButton';
+import axios from 'axios';
 import './GamePage.scss';
 
 const GamePage = () => {
+    const { id } = useParams(); 
+    const [exercise, setExercise] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [consecutiveCount, setConsecutiveCount] = useState(0);
     const [noteColors, setNoteColors] = useState(Array(12).fill('black'));
@@ -27,8 +31,18 @@ const GamePage = () => {
         { note: "C", top: "91.5" },
     ];
 
-    const inputString = "A A# C C C# D D# E F F# G G# A A# B B"; 
-    const inputNotes = inputString.split(" "); 
+    useEffect(() => {
+        const fetchExercise = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/exercises/${id}`);
+                setExercise(response.data);
+            } catch (error) {
+                console.error('Failed to fetch exercise:', error);
+            }
+        };
+
+        fetchExercise();
+    }, [id]);
 
     useEffect(() => {
         currentIndexRef.current = currentIndex;
@@ -40,7 +54,7 @@ const GamePage = () => {
 
     const handlePitch = (sungNote) => {
         const expectedNote = inputNotes[currentIndexRef.current];
-        
+        console.log(sungNote);
         if (sungNote === expectedNote) {
             setConsecutiveCount(prevCount => {
                 const newCount = prevCount + 1;
@@ -69,6 +83,10 @@ const GamePage = () => {
             });
         }
     };
+
+    if (!exercise) return <div>Loading...</div>;
+
+    const inputNotes = exercise.notes.split(" ");
 
     return (
         <div className="game-page">

@@ -1,0 +1,41 @@
+.exercises-table {
+    margin: 20px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px; /* Increased padding for better spacing */
+            text-align: left;
+        }
+
+        th {
+            background-color: #4c4c4c;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr {
+            cursor: pointer; /* Indicate rows are clickable */
+            transition: background-color 0.3s; /* Smooth background change */
+
+            &:hover {
+                background-color: #d1d1d1; /* Highlight on hover */
+            }
+        }
+
+        .lock-icon {
+            color: red; 
+        }
+
+        .unlock-icon {
+            color: green; 
+        }
+    }
+}
