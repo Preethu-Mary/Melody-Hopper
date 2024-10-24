@@ -83,4 +83,4 @@ export const playTone = (note, duration) => {
     oscillator.connect(audioContxt.destination);
     oscillator.start();
     oscillator.stop(audioContxt.currentTime + duration);
-  }
+  };

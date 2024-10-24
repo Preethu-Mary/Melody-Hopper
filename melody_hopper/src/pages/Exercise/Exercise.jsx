@@ -3,7 +3,8 @@ import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import MicButton from '../../Components/MicButton/MicButton';
-import { playTone } from '../../utils/pitchtrack';
+import SidePanel from '../../Components/sidePanel/sidePanel';
+import Brick from '../../Components/brick/brick';
 
 const Test = () => {
     const notes = [
@@ -106,18 +107,7 @@ const Test = () => {
     return (
         <div className="notes-container">
             <div className='notes-container__wall'>
-                <div className='notes-container__side-panel'>
-                    {notes.map(({ note, color }) => (
-                        <div
-                            key={note}
-                            className="notes-container__ref-note"
-                            style={{ backgroundColor: color }}
-                            onClick={() => playTone(note, 1)}
-                        >
-                            {note}
-                        </div>
-                    ))}
-                </div>
+                <SidePanel notes={notes} />
                 <div className="bricks">
                     {Array.from({ length: 12 }).map((_, rowIndex) => (
                         <div className="bricks__row" key={rowIndex}>
@@ -125,16 +115,12 @@ const Test = () => {
                                 const brickColor = brickColors[rowIndex][colIndex]; 
                                 const isTransformed = transformedBrick.row === rowIndex && transformedBrick.col === colIndex;
                                 return (
-                                    <div
+                                    <Brick 
                                     key={colIndex}
-                                    className={`bricks__brick`}
-                                    style={{ 
-                                        backgroundColor: brickColor,
-                                        transform: isTransformed ? 'translateY(-5px) rotateX(3deg)' : 'none'
-                                        }}
-                                    >
-                                        {notes[rowIndex].note}
-                                    </div>
+                                    color={brickColor}
+                                    note={notes[rowIndex]?.note}
+                                    isTransformed={isTransformed}
+                                />
                                 );
                             })}
                         </div>
