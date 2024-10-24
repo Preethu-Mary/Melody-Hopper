@@ -1,33 +1,37 @@
 import './Test.scss'; 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import MicButton from '../../Components/MicButton/MicButton';
+import { playTone } from '../../utils/pitchtrack';
 
 const Test = () => {
     const notes = [
-        { note: "B", color: "#EAB8E4", sound: "path/to/C.mp3" },
-        { note: "A#", color: "#A7B2E0", sound: "path/to/D.mp3" },
-        { note: "A", color: "#A2C2E6", sound: "path/to/E.mp3" },
-        { note: "G#", color: "#B8E6B7", sound: "path/to/F.mp3" },
-        { note: "G", color: "#E6E9A2", sound: "path/to/G.mp3" },
-        { note: "F#", color: "#F1C1A1", sound: "path/to/A.mp3" },
-        { note: "F", color: "#F6B3B1", sound: "path/to/B.mp3" },
-        { note: "E", color: "#F4C2D1", sound: "path/to/Csharp.mp3" },
-        { note: "D#", color: "#D8B6E1", sound: "path/to/Dsharp.mp3" },
-        { note: "D", color: "#A2D1E0", sound: "path/to/Fsharp.mp3" },
-        { note: "C#", color: "#B6E2C8", sound: "path/to/Gsharp.mp3" },
-        { note: "C", color: "#F1C6A7", sound: "path/to/Asharp.mp3" },
+        { note: "B", color: "#EAB8E4"},
+        { note: "A#", color: "#A7B2E0" },
+        { note: "A", color: "#A2C2E6"},
+        { note: "G#", color: "#B8E6B7" },
+        { note: "G", color: "#E6E9A2"},
+        { note: "F#", color: "#F1C1A1"},
+        { note: "F", color: "#F6B3B1"},
+        { note: "E", color: "#F4C2D1"},
+        { note: "D#", color: "#D8B6E1"},
+        { note: "D", color: "#A2D1E0"},
+        { note: "C#", color: "#B6E2C8"},
+        { note: "C", color: "#F1C6A7"},
     ];
+
     const input = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'A', 'B'];
     const [currentIndex, setCurrentIndex] = useState(0);
     const [consecutiveCount, setConsecutiveCount] = useState(0);
+    const currentIndexRef = useRef(currentIndex);
+    const consecutiveCountRef = useRef(consecutiveCount);
 
-    // State for colors
     const [brickColors, setBrickColors] = useState(
         Array.from({ length: 12 }, () => Array(input.length).fill('white'))
     );
 
-    
+    const [transformedBrick, setTransformedBrick] = useState({ row: -1, col: -1 });
 
+   
     input.forEach((note, colIndex) => {
         const noteIndex = notes.findIndex(n => n.note === note);
         if (noteIndex !== -1) {
@@ -37,36 +41,62 @@ const Test = () => {
 
     const initialColors = brickColors;
 
-    const playSound = (sound) => {
-        const audio = new Audio(sound);
-        audio.play();
-    };
-
     const handlePitch = (sungNote) => {
-        const colIndex = currentIndex; 
+        const colIndex = currentIndexRef.current; 
         const rowIndex = notes.findIndex(n => n.note === sungNote);
-        
-        if (rowIndex !== -1) {
+        const expectedNote = input[currentIndexRef.current];
+
+        if (sungNote === expectedNote) {
+            setConsecutiveCount(prevCount => {
+                const newCount = prevCount + 1;
+                if (newCount >= 10) {
+                    setTransformedBrick({ row: rowIndex, col: colIndex });
+               
+                    setCurrentIndex(prevIndex => {
+                        const nextIndex = Math.min(prevIndex + 1, input.length - 1);
+                        return nextIndex;
+                    });
+       
+                    return 0;
+                }
+
+                return newCount;
+            });
+        } else {
+            setConsecutiveCount(0);
             setBrickColors(initialColors.map(row => [...row]));
             setBrickColors(prevColors => {
                 const newColors = [...prevColors]; 
                 newColors[rowIndex][colIndex] = notes[rowIndex].color; 
                 return newColors; 
             });
+            setTimeout(() => {
+                setBrickColors(initialColors.map(row => [...row]));
+            }, 20);
+            
         }
-        console.log(sungNote, rowIndex, colIndex);
     };
+
+
+    
+    useEffect(() => {
+        currentIndexRef.current = currentIndex;
+    }, [currentIndex]);
+
+    useEffect(() => {
+        consecutiveCountRef.current = consecutiveCount;
+    }, [consecutiveCount]);
 
     return (
         <div className="notes-container">
             <div className='notes-container__wall'>
                 <div className='notes-container__side-panel'>
-                    {notes.map(({ note, color, sound }) => (
+                    {notes.map(({ note, color }) => (
                         <div
                             key={note}
                             className="notes-container__ref-note"
                             style={{ backgroundColor: color }}
-                            onClick={() => playSound(sound)}
+                            onClick={() => playTone(note, 1)}
                         >
                             {note}
                         </div>
@@ -77,11 +107,15 @@ const Test = () => {
                         <div className="bricks__row" key={rowIndex}>
                             {input.map((_, colIndex) => {
                                 const brickColor = brickColors[rowIndex][colIndex]; 
+                                const isTransformed = transformedBrick.row === rowIndex && transformedBrick.col === colIndex;
                                 return (
                                     <div
-                                        key={colIndex}
-                                        className="bricks__brick"
-                                        style={{ backgroundColor: brickColor }}
+                                    key={colIndex}
+                                    className={`bricks__brick`}
+                                    style={{ 
+                                        backgroundColor: brickColor,
+                                        transform: isTransformed ? 'translateY(-5px) rotateX(3deg)' : 'none'
+                                        }}
                                     >
                                         {notes[rowIndex].note}
                                     </div>

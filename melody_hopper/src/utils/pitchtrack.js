@@ -1,6 +1,22 @@
 import PitchFinder from 'pitchfinder';
 
 const noteString = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+const audioContxt = new (window.AudioContext || window.webkitAudioContext)();
+const notes = {
+    C: 261.63,
+    'C#': 277.18,
+    D: 293.66,
+    'D#': 311.13,
+    E: 329.63,
+    F: 349.23,
+    'F#': 369.99,
+    G: 392.00,
+    'G#': 415.30,
+    A: 440.00,
+    'A#': 466.16,
+    B: 493.88
+  };
+  
 
 export const noteFromFrequency = (frequency) => {
     const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
@@ -59,3 +75,12 @@ export const stopMicrophoneStream = (source, audioContext, rafID) => {
         }
     }
 };
+
+export const playTone = (note, duration) => {
+    const oscillator = audioContxt.createOscillator();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(notes[note], audioContxt.currentTime);
+    oscillator.connect(audioContxt.destination);
+    oscillator.start();
+    oscillator.stop(audioContxt.currentTime + duration);
+  }

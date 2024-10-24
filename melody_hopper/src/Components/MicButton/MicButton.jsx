@@ -16,10 +16,10 @@ const MicButton = ({ getPitch }) => {
     const main = () => {
         if (!isTracking) {
             getMicrophoneStream(constraints, audioContext, source, analyser, buffer, rafID, getPitch, mic);
-            mic.current.innerHTML = "Disable mic";
+            mic.current.innerHTML = "<i class='bi bi-stop-fill'></i>";
         } else {
             stopMicrophoneStream(source, audioContext, rafID);
-            mic.current.innerHTML = "Enable mic";
+            mic.current.innerHTML = "<i class='bi bi-mic'></i>";
         }
         setIsTracking(prev => !prev);
     };
