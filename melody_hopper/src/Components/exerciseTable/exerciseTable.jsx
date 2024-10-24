@@ -16,7 +16,7 @@ const ExercisesTable = ({ exercises }) => {
                         <tr key={exercise.id}>
                             <td>{index + 1}</td>
                             <td>
-                                <Link to={`/game/${exercise.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                <Link to={`/exercise/${exercise.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                     {exercise.exercise_name}
                                 </Link>
                             </td>
