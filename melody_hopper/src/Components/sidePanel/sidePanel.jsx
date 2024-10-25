@@ -1,11 +1,12 @@
 import { playTone } from '../../utils/pitchtrack';
+import './sidePanel.scss';
 
 const SidePanel = ({ notes }) => (
-    <div className='notes-container__side-panel'>
+    <div className='side-panel'>
         {notes.map(({ note, color }) => (
             <div
                 key={note}
-                className="notes-container__ref-note"
+                className="side-panel__ref-note"
                 style={{ backgroundColor: color }}
                 onClick={() => playTone(note, 1)}
             >

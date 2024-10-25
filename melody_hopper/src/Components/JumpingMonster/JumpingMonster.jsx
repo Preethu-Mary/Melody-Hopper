@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import character from '../../assets/Monster-image.png';
 import { gsap } from 'gsap';
+import './JumpingMonster.scss';
 
 const JumpingMonster = ({ jump, landingY, landingX }) => {
     const boxRef = useRef(null);
@@ -8,13 +9,13 @@ const JumpingMonster = ({ jump, landingY, landingX }) => {
     useEffect(() => {
         if (jump) {
             gsap.to(boxRef.current, {
-                y:landingY, // Jump height
-                x: landingX, // Move to the right
+                y:landingY,
+                x: landingX,
                 duration: 0.5,
                 onComplete: () => {
                     gsap.to(boxRef.current, {
-                        y: landingY+10, // Dynamic landing height
-                        x: landingX, // Maintain the x position on landing
+                        y: landingY+10, 
+                        x: landingX, 
                         duration: 0.5,
                     });
                 }
@@ -26,14 +27,8 @@ const JumpingMonster = ({ jump, landingY, landingX }) => {
         <img
             ref={boxRef}
             src={character} 
-            alt="Jumping Box"
-            style={{
-                width: '50px',
-                height: '50px',
-                position: 'absolute',
-                left: '260px',
-                bottom: '95px', 
-            }}
+            alt="Jumping Monster"
+            className="monster"
         />
     );
 };
