@@ -1,11 +1,12 @@
 import './Exercise.scss'; 
 import { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 import MicButton from '../../Components/MicButton/MicButton';
 import SidePanel from '../../Components/sidePanel/sidePanel';
 import Brick from '../../Components/brick/brick';
 import JumpingMonster from '../../Components/JumpingMonster/JumpingMonster';
+import { PlayAgainPopup } from '../../Components/popup/popup';
 import winner from '../../assets/534330_17ad5.gif';
 
 const Test = () => {
@@ -24,6 +25,7 @@ const Test = () => {
         { note: "C", color: "#F1C6A7" },
     ];
     const { id } = useParams();
+    const navigate = useNavigate();
     const [exercise, setExercise] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [consecutiveCount, setConsecutiveCount] = useState(0);
@@ -32,6 +34,7 @@ const Test = () => {
     const [landingY, setLandingY] = useState(0);
     const [landingX, setLandingX] = useState(100);
     const [showGif, setShowGif] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);  
     const [brickColors, setBrickColors] = useState(Array.from({ length: 12 }, () => Array(exercise.length).fill('white')));
 
     const currentIndexRef = useRef(currentIndex);
@@ -50,7 +53,20 @@ const Test = () => {
 
     const showWinGif = () => {
         setTimeout(() => setShowGif(true), 2000);
-        setTimeout(() => setShowGif(false), 6000);
+        setTimeout(() => {
+            setShowGif(false);
+            setShowPopup(true); 
+        }, 6000);
+    };
+
+    const handlePlayAgain = () => {
+        setShowPopup(false);
+        navigate(0);
+    };
+
+    const handleGoBack = () => {
+        setShowPopup(false);
+        navigate('/'); 
     };
 
     const handleCorrectPitch = (colIndex, sungNote) => {
@@ -153,6 +169,10 @@ const Test = () => {
                 <img src={winner} alt="Congratulations!" />
             </div>
              )}
+
+            {showPopup && (
+                <PlayAgainPopup onPlayAgain={handlePlayAgain} onGoBack={handleGoBack} />
+            )}
             <div className="notes-container__footer">
                 <MicButton getPitch={handlePitch} />
             </div>
