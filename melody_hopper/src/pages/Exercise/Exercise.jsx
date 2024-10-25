@@ -5,7 +5,7 @@ import axios from 'axios';
 import MicButton from '../../Components/MicButton/MicButton';
 import SidePanel from '../../Components/sidePanel/sidePanel';
 import Brick from '../../Components/brick/brick';
-import JumpingBox from '../../Components/JumpingBox/JumpingBox';
+import JumpingMonster from '../../Components/JumpingMonster/JumpingMonster';
 import winner from '../../assets/534330_17ad5.gif';
 
 const Test = () => {
@@ -147,7 +147,7 @@ const Test = () => {
                     ))}
                 </div>
             </div>
-            <JumpingBox jump={jump} landingY={landingY} landingX={landingX} /> 
+            <JumpingMonster jump={jump} landingY={landingY} landingX={landingX} /> 
             {showGif && (
             <div className="gif-overlay">
                 <img src={winner} alt="Congratulations!" />
