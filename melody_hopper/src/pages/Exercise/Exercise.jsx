@@ -59,7 +59,6 @@ const Test = () => {
 
         if (sungNote === expectedNote) {
             const newLandingY = notes.find(n => n.note === expectedNote).landingY; 
-            console.log(newLandingY);
             const newLandingX = (colIndex+0.75) * 75; 
             setLandingY(newLandingY);
             setLandingX(newLandingX);
@@ -67,11 +66,15 @@ const Test = () => {
                 const newCount = prevCount + 1;
                 if (newCount >= 10) {
                     setTransformedBrick({ row: rowIndex, col: colIndex });
-               
                     setCurrentIndex(prevIndex => {
                         const nextIndex = Math.min(prevIndex + 1, exercise.length - 1);
-                        if (nextIndex === exercise.length - 1) {
-                            setShowGif(true); 
+                        if (currentIndexRef.current === exercise.length-1) {
+                            setTimeout(() => {
+                                setShowGif(true); 
+                            }, 2000);
+                            setTimeout(() => {
+                                setShowGif(false);
+                            }, 6000);
                         }
                         return nextIndex;
                     });
