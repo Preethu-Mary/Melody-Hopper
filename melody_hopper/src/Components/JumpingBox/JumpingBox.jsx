@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import character from '../../assets/skeleton-animation_00.png';
+import character from '../../assets/Monster-image.png';
 import { gsap } from 'gsap';
 
 const JumpingBox = ({ jump, landingY, landingX }) => {
