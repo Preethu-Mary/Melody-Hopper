@@ -13,7 +13,7 @@ const JumpingBox = ({ jump, landingY, landingX }) => {
                 duration: 0.5,
                 onComplete: () => {
                     gsap.to(boxRef.current, {
-                        y: landingY, // Dynamic landing height
+                        y: landingY+10, // Dynamic landing height
                         x: landingX, // Maintain the x position on landing
                         duration: 0.5,
                     });
@@ -31,8 +31,8 @@ const JumpingBox = ({ jump, landingY, landingX }) => {
                 width: '50px',
                 height: '50px',
                 position: 'absolute',
-                left: '350px',
-                bottom: '70px', 
+                left: '260px',
+                bottom: '95px', 
             }}
         />
     );

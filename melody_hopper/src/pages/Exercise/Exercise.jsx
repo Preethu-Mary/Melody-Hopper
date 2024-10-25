@@ -9,18 +9,18 @@ import JumpingBox from '../../Components/JumpingBox/JumpingBox';
 
 const Test = () => {
     const notes = [
-        { note: "B", color: "#EAB8E4"},
-        { note: "A#", color: "#A7B2E0" },
-        { note: "A", color: "#A2C2E6"},
-        { note: "G#", color: "#B8E6B7" },
-        { note: "G", color: "#E6E9A2"},
-        { note: "F#", color: "#F1C1A1"},
-        { note: "F", color: "#F6B3B1"},
-        { note: "E", color: "#F4C2D1"},
-        { note: "D#", color: "#D8B6E1"},
-        { note: "D", color: "#A2D1E0"},
-        { note: "C#", color: "#B6E2C8"},
-        { note: "C", color: "#F1C6A7"},
+        { note: "B", color: "#EAB8E4", landingY:-509.5},
+        { note: "A#", color: "#A7B2E0", landingY: -468},
+        { note: "A", color: "#A2C2E6", landingY:-426.5},
+        { note: "G#", color: "#B8E6B7", landingY: -385},
+        { note: "G", color: "#E6E9A2", landingY:-343.5},
+        { note: "F#", color: "#F1C1A1", landingY:-302},
+        { note: "F", color: "#F6B3B1", landingY:-260.5},
+        { note: "E", color: "#F4C2D1", landingY:-219},
+        { note: "D#", color: "#D8B6E1", landingY:-177.5},
+        { note: "D", color: "#A2D1E0", landingY:-136},
+        { note: "C#", color: "#B6E2C8", landingY:-94.5},
+        { note: "C", color: "#F1C6A7", landingY:-53},
     ];
 
     const { id } = useParams(); 
@@ -56,9 +56,9 @@ const Test = () => {
         const expectedNote = exercise[currentIndexRef.current];
 
         if (sungNote === expectedNote) {
-            const newLandingY = 50 * (notes.findIndex(n => n.note === expectedNote)-12); 
+            const newLandingY = notes.find(n => n.note === expectedNote).landingY; 
             console.log(newLandingY);
-            const newLandingX = 100 + colIndex * 65; 
+            const newLandingX = (colIndex+0.75) * 75; 
             setLandingY(newLandingY);
             setLandingX(newLandingX);
             setConsecutiveCount(prevCount => {
