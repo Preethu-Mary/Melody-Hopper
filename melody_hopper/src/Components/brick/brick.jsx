@@ -3,7 +3,7 @@ const Brick = ({ color, note, isTransformed }) => (
         className="bricks__brick"
         style={{
             backgroundColor: color,
-            transform: isTransformed ? 'translateY(-5px) rotateX(3deg)' : 'none'
+            transform: isTransformed ? 'translateY(-5px) rotateX(5deg)' : 'none'
         }}
     >
         {note}

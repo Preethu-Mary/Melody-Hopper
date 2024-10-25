@@ -85,3 +85,15 @@
         }
     }
 }
+
+.gif-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; // Ensure it is on top of other elements
+    img {
+        width: 150%;
+    }
+}
+

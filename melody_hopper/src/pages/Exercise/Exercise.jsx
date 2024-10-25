@@ -6,6 +6,7 @@ import MicButton from '../../Components/MicButton/MicButton';
 import SidePanel from '../../Components/sidePanel/sidePanel';
 import Brick from '../../Components/brick/brick';
 import JumpingBox from '../../Components/JumpingBox/JumpingBox';
+import winner from '../../assets/534330_17ad5.gif';
 
 const Test = () => {
     const notes = [
@@ -33,6 +34,7 @@ const Test = () => {
     const [jump, setJump] = useState(false);
     const [landingY, setLandingY] = useState(0);
     const [landingX, setLandingX] = useState(100);
+    const [showGif, setShowGif] = useState(false);
     // const bricksContainerRef = useRef(null); 
 
     const [brickColors, setBrickColors] = useState(
@@ -68,10 +70,13 @@ const Test = () => {
                
                     setCurrentIndex(prevIndex => {
                         const nextIndex = Math.min(prevIndex + 1, exercise.length - 1);
+                        if (nextIndex === exercise.length - 1) {
+                            setShowGif(true); 
+                        }
                         return nextIndex;
                     });
 
-                    setJump(true); // Trigger jump
+                    setJump(true);
                     setTimeout(() => setJump(false), 500);
 
                     // if (bricksContainerRef.current) {
@@ -148,6 +153,11 @@ const Test = () => {
                 </div>
             </div>
             <JumpingBox jump={jump} landingY={landingY} landingX={landingX} /> 
+            {showGif && (
+            <div className="gif-overlay">
+                <img src={winner} alt="Congratulations!" />
+            </div>
+             )}
             <div className="notes-container__footer">
                 <MicButton getPitch={handlePitch} />
             </div>
