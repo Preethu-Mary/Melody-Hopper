@@ -68,7 +68,7 @@ const Test = () => {
                 setTransformedBrick({ row: rowIndex, col: colIndex });
                 setCurrentIndex(prevIndex => {
                 const nextIndex = Math.min(prevIndex + 1, exercise.length - 1);
-                if (nextIndex === exercise.length - 1) {
+                if (currentIndexRef.current === exercise.length - 1) {
                     showWinGif();
                 }
                 setJump(true);
