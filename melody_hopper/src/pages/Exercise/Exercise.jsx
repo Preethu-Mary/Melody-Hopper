@@ -5,6 +5,7 @@ import axios from 'axios';
 import MicButton from '../../Components/MicButton/MicButton';
 import SidePanel from '../../Components/sidePanel/sidePanel';
 import Brick from '../../Components/brick/brick';
+import JumpingBox from '../../Components/JumpingBox/JumpingBox';
 
 const Test = () => {
     const notes = [
@@ -29,6 +30,10 @@ const Test = () => {
     const [transformedBrick, setTransformedBrick] = useState({ row: -1, col: -1 });
     const currentIndexRef = useRef(currentIndex);
     const consecutiveCountRef = useRef(consecutiveCount);
+    const [jump, setJump] = useState(false);
+    const [landingY, setLandingY] = useState(0);
+    const [landingX, setLandingX] = useState(100);
+    // const bricksContainerRef = useRef(null); 
 
     const [brickColors, setBrickColors] = useState(
         Array.from({ length: 12 }, () => Array(exercise.length).fill('white'))
@@ -51,6 +56,11 @@ const Test = () => {
         const expectedNote = exercise[currentIndexRef.current];
 
         if (sungNote === expectedNote) {
+            const newLandingY = 50 * (notes.findIndex(n => n.note === expectedNote)-12); 
+            console.log(newLandingY);
+            const newLandingX = 100 + colIndex * 65; 
+            setLandingY(newLandingY);
+            setLandingX(newLandingX);
             setConsecutiveCount(prevCount => {
                 const newCount = prevCount + 1;
                 if (newCount >= 10) {
@@ -60,6 +70,16 @@ const Test = () => {
                         const nextIndex = Math.min(prevIndex + 1, exercise.length - 1);
                         return nextIndex;
                     });
+
+                    setJump(true); // Trigger jump
+                    setTimeout(() => setJump(false), 500);
+
+                    // if (bricksContainerRef.current) {
+                    //     bricksContainerRef.current.scrollBy({
+                    //         left: 100, // Adjust as needed
+                    //         behavior: 'smooth'
+                    //     });
+                    // }
        
                     return 0;
                 }
@@ -127,6 +147,7 @@ const Test = () => {
                     ))}
                 </div>
             </div>
+            <JumpingBox jump={jump} landingY={landingY} landingX={landingX} /> 
             <div className="notes-container__footer">
                 <MicButton getPitch={handlePitch} />
             </div>
