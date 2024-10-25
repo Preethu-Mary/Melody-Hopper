@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import character from '../../assets/Monster-image.png';
 import { gsap } from 'gsap';
 
-const JumpingBox = ({ jump, landingY, landingX }) => {
+const JumpingMonster = ({ jump, landingY, landingX }) => {
     const boxRef = useRef(null);
 
     useEffect(() => {
@@ -38,4 +38,4 @@ const JumpingBox = ({ jump, landingY, landingX }) => {
     );
 };
 
-export default JumpingBox;
+export default JumpingMonster;
