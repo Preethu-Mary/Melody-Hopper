@@ -1,7 +1,6 @@
 import './App.scss'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-import GamePage from "./pages/GamePage/GamePage";
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Exercise from './pages/Exercise/Exercise';
 
@@ -13,7 +12,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage/>}  />
           <Route path="/exercise/:id" element={<Exercise/>}  />
-          <Route path="/game/:id" element={<GamePage/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter> 
