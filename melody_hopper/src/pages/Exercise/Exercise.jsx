@@ -7,9 +7,9 @@ import SidePanel from '../../Components/sidePanel/sidePanel';
 import Brick from '../../Components/brick/brick';
 import JumpingMonster from '../../Components/JumpingMonster/JumpingMonster';
 import { PlayAgainPopup } from '../../Components/popup/popup';
-import winner from '../../assets/534330_17ad5.gif';
+import winner from '../../assets/firecrackers.gif';
 
-const Test = () => {
+const Exercise = () => {
     const notes = [
         { note: "B", color: "#EAB8E4" },
         { note: "A#", color: "#A7B2E0" },
@@ -180,4 +180,4 @@ const Test = () => {
     );
 };
 
-export default Test;
+export default Exercise;
