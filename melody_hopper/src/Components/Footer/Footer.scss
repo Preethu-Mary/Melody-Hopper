@@ -1,0 +1,47 @@
+.footer {
+    background-color: #f7f7f7; // Light background color
+    padding: 20px;
+    text-align: left; // Left align text
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); // Optional shadow effect
+    color: rgb(84, 90, 95);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    .footer-content {
+        max-width: 1200px; // Max width for content
+        margin: 0 auto; // Center align
+        display: flex;
+        gap: 5rem;
+    }
+
+    .contact-info, .social-media {
+        margin-bottom: 20px; // Space between sections
+
+        h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem; // Heading size
+        }
+
+        p {
+            margin: 5px 0; // Space between paragraphs
+            font-size: 1rem; // Paragraph size
+        }
+
+        a {
+            display: block; // Make links block level for better spacing
+            margin: 5px 0; // Space between links
+            color: #007bff; // Link color
+            text-decoration: none; // Remove underline
+
+            &:hover {
+                text-decoration: underline; // Underline on hover
+            }
+        }
+    }
+
+    .footer-bottom {
+        text-align: center; // Center the copyright text
+        margin-top: 20px; // Space above
+        font-size: 0.9rem; // Smaller font size for copyright
+        color: #777; // Lighter color for copyright text
+    }
+}

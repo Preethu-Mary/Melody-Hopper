@@ -1,7 +1,16 @@
 .hero {
     background-image: url('../../assets/hero.avif');
-    width: 100%;
-    height: 100%;
+    height: 100vh; // Full viewport height for the hero section
     background-size: cover;
-    background-position: bottom;
+    background-position: center;
+    display: flex; // Use flexbox for centering
+    align-items: center; // Vertically center the content
+    justify-content: flex-start; // Left-align the content
+    padding: 0 2rem; // Add some padding on the sides
+
+    .hero-title {
+        color: white; // Adjust text color for visibility
+        font-size: 2.5rem; // Adjust font size as needed
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); // Optional: Add text shadow for better readability
+    }
 }
