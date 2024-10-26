@@ -1,34 +1,47 @@
 .navbar {
-    background-color: rgb(19, 1, 14); 
+    background-color: rgb(247, 244, 244); 
     padding: 25px 20px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
-    font-family: 'Roboto', sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     &__list {
         list-style: none; 
-        display: flex; /* Align items in a row */
-        justify-content: space-between; /* Space between items */
-        align-items: center; /* Center items vertically */
-        margin: 0; /* Remove default margin */
-        padding: 0; /* Remove default padding */
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        margin: 0;
+        padding: 0; 
     }
     
     &__brand {
-        font-size: 1.5rem; /* Larger font size for brand */
-        color: white; /* White text */
-        font-weight: bold; /* Bold font */
+        font-size: 1.5rem;
+        color: black; 
+        font-weight: bold; 
     }
     
     &__item {
-        color: white; /* White text for menu items */
-        margin: 0 15px; /* Space between items */
-        transition: color 0.3s; /* Smooth transition on hover */
-        cursor: pointer; /* Pointer cursor */
+        color: black; 
+        margin: 0 15px;
+        transition: color 0.3s;
+        cursor: pointer; 
     
         &:hover {
-            color: #ffab40; /* Change color on hover (orange) */
+            color: #ffab40;
         }   
     }    
 }
 
+
+:root {
+    --pastel-blue: #4a90e2;  // Light pastel blue
+    --pastel-pink: #d5006d;  // Light pastel pink
+  }
+  
+  .gradient-text {
+    font-weight: bold;
+    background: linear-gradient(to right, var(--pastel-blue), var(--pastel-pink));
+    -webkit-background-clip: text;  // For Safari
+    background-clip: text;
+    color: transparent;  // Hide the original text color
+  }
 

@@ -4,26 +4,18 @@ import './exerciseTable.scss';
 const ExercisesTable = ({ exercises }) => {
     return (
         <div className="exercises-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Exercise Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {exercises.map((exercise, index) => (
-                        <tr key={exercise.id}>
-                            <td>{index + 1}</td>
-                            <td>
-                                <Link to={`/exercise/${exercise.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    {exercise.exercise_name}
-                                </Link>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <div className="cards-container">
+                {exercises.map((exercise, index) => (
+                    <div className="card" key={exercise.id}>
+                        <Link to={`/exercise/${exercise.id}`} className="card-link">
+                            <div className="card-content">
+                                <span className="sl-no">{index + 1}</span><br></br>
+                                <span className="exercise-name">{exercise.exercise_name}</span>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

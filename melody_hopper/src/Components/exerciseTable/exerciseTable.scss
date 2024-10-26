@@ -1,41 +1,57 @@
 .exercises-table {
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(84, 90, 95);
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 4rem;
+    width: 100%;
+    max-width: 1200px; 
+    padding: 1rem;
+    margin-top: 3rem;
+}
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 12px; /* Increased padding for better spacing */
-            text-align: left;
-        }
+.card {
+    position: relative; 
+    width: 100%; 
+    padding-top: 100%; 
+    background: linear-gradient(135deg, #a0d7e7, #f7c2d6);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 
-        th {
-            background-color: #4c4c4c;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr {
-            cursor: pointer; /* Indicate rows are clickable */
-            transition: background-color 0.3s; /* Smooth background change */
-
-            &:hover {
-                background-color: #d1d1d1; /* Highlight on hover */
-            }
-        }
-
-        .lock-icon {
-            color: red; 
-        }
-
-        .unlock-icon {
-            color: green; 
-        }
+    &:hover {
+        transform: translateY(-4px);
     }
+
+    .card-content {
+        position: absolute; 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center; 
+        width: 90%; 
+    }
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    height: 100%; 
+}
+
+.sl-no {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.exercise-name {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: rgb(84, 90, 95);
 }
