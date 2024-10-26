@@ -25,8 +25,9 @@ const HomePage = () => {
         <>
             <Navbar/>
             <div className='hero'>
-                <div className='hero-title'>
+                <div className='hero__title'>
                     <h1>Welcome to <br/>Melody Hopper</h1>
+                    <p className='hero__desc'>An interactive game designed for music beginners to enhance their music-reading skill and to have a perfect pitch in an engaging and enjoyable way.</p>
                 </div>
             </div>
             <ExercisesTable exercises={exercises} />

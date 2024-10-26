@@ -1,16 +1,22 @@
 .hero {
     background-image: url('../../assets/hero.avif');
-    height: 100vh; // Full viewport height for the hero section
+    height: 100vh; 
     background-size: cover;
     background-position: center;
-    display: flex; // Use flexbox for centering
-    align-items: center; // Vertically center the content
-    justify-content: flex-start; // Left-align the content
-    padding: 0 2rem; // Add some padding on the sides
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    padding: 0 2rem; 
 
-    .hero-title {
-        color: white; // Adjust text color for visibility
-        font-size: 2.5rem; // Adjust font size as needed
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); // Optional: Add text shadow for better readability
+    &__title {
+        color: white; 
+        font-size: 2.5rem; 
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(15px);
+        width: 45%;
+    }
+
+    &__desc {
+        font-size: 1.5rem;
     }
 }
