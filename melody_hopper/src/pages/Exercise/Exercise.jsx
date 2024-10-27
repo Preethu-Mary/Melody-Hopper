@@ -8,6 +8,7 @@ import Brick from '../../Components/brick/brick';
 import JumpingMonster from '../../Components/JumpingMonster/JumpingMonster';
 import { PlayAgainPopup } from '../../Components/popup/popup';
 import winner from '../../assets/firecrackers.gif';
+import BackButton from '../../Components/backButton/backButton';
 
 const Exercise = () => {
     const notes = [
@@ -162,6 +163,7 @@ const Exercise = () => {
                         </div>
                     ))}
                 </div>
+                <BackButton onClick={handleGoBack} />
             </div>
             <JumpingMonster jump={jump} landingY={landingY} landingX={landingX} /> 
             {showGif && (
