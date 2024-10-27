@@ -6,13 +6,17 @@ import Howtoplay from '../../Components/how_to_play/how_to_play';
 import Footer from '../../Components/Footer/Footer';
 import './HomePage.scss';
 
+const port = import.meta.env.VITE_PORT;
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 const HomePage = () => {
     const [exercises, setExercises] = useState([]);
+    const url = `${backendURL}:${port}/`;
 
     useEffect(() => {
         const fetchExercises = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/exercises');
+                const response = await axios.get(`${url}exercises`);
                 setExercises(response.data);
             } catch (error) {
                 console.error('Failed to fetch exercises:', error);

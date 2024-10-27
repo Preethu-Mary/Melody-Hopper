@@ -10,6 +10,9 @@ import { PlayAgainPopup } from '../../Components/popup/popup';
 import winner from '../../assets/firecrackers.gif';
 import BackButton from '../../Components/backButton/backButton';
 
+const port = import.meta.env.VITE_PORT;
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 const Exercise = () => {
     const notes = [
         { note: "B", color: "#EAB8E4" },
@@ -27,6 +30,8 @@ const Exercise = () => {
     ];
     const { id } = useParams();
     const navigate = useNavigate();
+    const url = `${backendURL}:${port}/`;
+
     const [exercise, setExercise] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [consecutiveCount, setConsecutiveCount] = useState(0);
@@ -125,7 +130,7 @@ const Exercise = () => {
     useEffect(() => {
         const fetchExercise = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/exercises/${id}`);
+                const response = await axios.get(`${url}exercises/${id}`);
                 const fetchedExercise = response.data.notes.split(" ");
                 setExercise(fetchedExercise);
                 setBrickColors(initializeBrickColors(fetchedExercise));
