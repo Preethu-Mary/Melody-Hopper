@@ -3,8 +3,7 @@ Melody Hopper
 
 ## Overview
 
-Melody Hopper is an engaging and interactive game where players control a character that jumps through a vibrant world by identifying and singing musical notes. 
-The objective is to jump the farthest and achieve the highest score by correctly matching the musical notes displayed on the screen.
+Melody Hopper is an engaging and interactive game designed to help beginners, especially children, develop perfect pitch and improve their sight-reading skills in music. In this fun-filled game, players control a playful monster that jumps from tile to tile based on the musical notes sung aloud.
 
 ### Problem
 
@@ -21,9 +20,8 @@ Melody Hopper aims to address the challenge of learning sight-reading in music b
 
 - As a user, I want to be able to sing or hum notes displayed on the screen to improve my pitch recognition skills.
 - As a user, I want to be able to receive instant feedback on my accuracy when singing notes to track my progress.
-- As a user, I want to be able to choose different difficulty levels to match my skill level and challenge myself.
-- As a user, I want to be able to see my scores and achievements after each game session to monitor my improvement.
-
+- As a user, I want to be able to choose different exercises to practice.
+- As a user, I want the option to listen to the notes whenever I'm unsure.
 
 ## Implementation
 
