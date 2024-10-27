@@ -62,7 +62,7 @@ Melody Hopper aims to address the challenge of learning sight-reading in music b
 ### Mockups
 
 Game page
-![](gamepage.png)
+![](Gamepage.png)
 
 ### Endpoints
 
