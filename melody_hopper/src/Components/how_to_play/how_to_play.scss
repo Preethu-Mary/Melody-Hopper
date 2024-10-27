@@ -1,0 +1,30 @@
+.game-instructions-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    margin: 5rem 0 8rem 0;
+
+    .video-section {
+        flex: 1;
+        margin-right: 20px;
+
+        video {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .instructions-section {
+        flex: 1;
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    }
+}

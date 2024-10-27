@@ -16,7 +16,9 @@ function Navbar() {
                     </Link>
                 </li>
                 <li className='navbar__item gradient-text'>
-                    Game Rules
+                    <Link to="game-instructions-container" smooth={true} duration={500}>
+                        Game Rules
+                    </Link>
                 </li>
             </ul>
         </ul>

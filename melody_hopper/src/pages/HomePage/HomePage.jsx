@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../../Components/Navbar/Navbar';
 import ExercisesTable from '../../Components/exerciseTable/exerciseTable';
+import Howtoplay from '../../Components/how_to_play/how_to_play';
 import Footer from '../../Components/Footer/Footer';
 import './HomePage.scss';
 
@@ -31,6 +32,7 @@ const HomePage = () => {
                 </div>
             </div>
             <ExercisesTable exercises={exercises} />
+            <Howtoplay/>
             <Footer />
         </>
         
