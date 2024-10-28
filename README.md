@@ -9,6 +9,14 @@ Melody Hopper is an engaging and interactive game designed to help beginners, es
 
 Melody Hopper aims to address the challenge of learning sight-reading in music by providing an engaging and interactive platform. Many aspiring musicians struggle with identifying and accurately singing musical notes, which can hinder their progress. By combining gameplay with music education, Melody Jump helps users develop their pitch recognition and sight-reading skills in a fun, motivating environment. Players will enhance their musical literacy while enjoying the excitement of a game, making learning more accessible and enjoyable.
 
+#Project setup
+
+1. Git clone both client and server repositories Melody_hopper and Melody_hopper_api.
+2. Make sure you have installed the libraries mentioned in the tech stack section below.
+3. Create a file named .env and add your environment variables for both client and server. envsample is provided.
+4. Run the client and server.
+5. Follow the instructions in the graphical interface to play the game.
+
 ### User Profile
 
 - Musicians:
