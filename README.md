@@ -74,6 +74,10 @@ Game page:
 
 ![](Gamepage.png)
 
+SQL Diagram:
+
+![](sql.png)
+
 ### Endpoints
 
 **GET /cafes**
