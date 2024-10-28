@@ -11,7 +11,7 @@ Melody Hopper aims to address the challenge of learning sight-reading in music b
 
 ### Project setup
 
-1. Git clone both client and server repositories Melody_hopper and Melody_hopper_api.
+1. Git clone both client and server repositories Melody-Hopper and Melody-Hopper-API.
 2. Make sure you have installed the libraries mentioned in the tech stack section below.
 3. Create a file named .env and add your environment variables for both client and server. envsample is provided.
 4. Run the client and server.
