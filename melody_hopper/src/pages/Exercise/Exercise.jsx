@@ -10,7 +10,6 @@ import { PlayAgainPopup } from '../../Components/popup/popup';
 import winner from '../../assets/firecrackers.gif';
 import BackButton from '../../Components/backButton/backButton';
 
-const port = import.meta.env.VITE_PORT;
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const Exercise = () => {
@@ -30,7 +29,7 @@ const Exercise = () => {
     ];
     const { id } = useParams();
     const navigate = useNavigate();
-    const url = `${backendURL}:${port}/`;
+    const url = `${backendURL}/`;
 
     const [exercise, setExercise] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);

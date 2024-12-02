@@ -6,12 +6,11 @@ import Howtoplay from '../../Components/how_to_play/how_to_play';
 import Footer from '../../Components/Footer/Footer';
 import './HomePage.scss';
 
-const port = import.meta.env.VITE_PORT;
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 const HomePage = () => {
     const [exercises, setExercises] = useState([]);
-    const url = `${backendURL}:${port}/`;
+    const url = `${backendURL}/`;
 
     useEffect(() => {
         const fetchExercises = async () => {
