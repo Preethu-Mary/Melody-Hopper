@@ -1,3 +1,5 @@
+@use "./../../styles/partials/mixins" as *;
+
 .footer {
     background-color: #f7f7f7; // Light background color
     padding: 20px;
@@ -9,8 +11,15 @@
     .footer-content {
         max-width: 1200px; // Max width for content
         margin: 0 auto; // Center align
-        display: flex;
         gap: 5rem;
+
+        @include tablet {
+            display: flex;
+        }
+
+        @include desktop {
+            display: flex;
+        }
     }
 
     .contact-info, .social-media {

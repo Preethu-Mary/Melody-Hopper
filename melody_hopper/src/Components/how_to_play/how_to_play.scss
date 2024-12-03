@@ -1,10 +1,22 @@
+@use "./../../styles/partials/mixins" as *;
+
 .game-instructions-container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px;
-    margin: 5rem 0 8rem 0;
+    margin-bottom: 5rem;
+    font-size: 14px;
+
+    @include tablet {
+        display: flex;
+        align-items: center;
+    }
+
+    @include desktop {
+        display: flex;
+        align-items: center;
+    }
 
     .video-section {
         flex: 1;

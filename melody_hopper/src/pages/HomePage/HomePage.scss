@@ -1,3 +1,5 @@
+@use "./../../styles/partials/mixins" as *;
+
 .hero {
     background-image: url('../../assets/hero.avif');
     height: 100vh; 
@@ -10,13 +12,25 @@
 
     &__title {
         color: white; 
-        font-size: 2.5rem; 
+        font-size: 1.5rem;
+        width: 90%;
+
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         backdrop-filter: blur(15px);
-        width: 45%;
     }
 
     &__desc {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    @include desktop {
+        &__title {
+            font-size: 2.5rem; 
+            width: 45%;
+        }
+
+        &__desc {
+            font-size: 1.5rem;
+        }
     }
 }
