@@ -41,9 +41,25 @@ const Exercise = () => {
     const [showGif, setShowGif] = useState(false);
     const [showPopup, setShowPopup] = useState(false);  
     const [brickColors, setBrickColors] = useState(Array.from({ length: 12 }, () => Array(exercise.length).fill('white')));
-
+    
+    const brickRefs = useRef([]);
     const currentIndexRef = useRef(currentIndex);
     const consecutiveCountRef = useRef(consecutiveCount);
+
+    // Function to get the position of a brick when it's transformed
+    const getBrickPosition = (rowIndex, colIndex) => {
+        const brickElement = brickRefs.current[rowIndex]?.[colIndex];
+        if (brickElement) {
+            const rect = brickElement.getBoundingClientRect();
+            return {
+                top: rect.top,
+                left: rect.left,
+                width: rect.width,
+                height: rect.height,
+            };
+        }
+        return null;
+    };
 
     const initializeBrickColors = (exercise) => {
         const initialColors = Array.from({ length: 12 }, () => Array(exercise.length).fill('white'));
@@ -76,13 +92,17 @@ const Exercise = () => {
 
     const handleCorrectPitch = (colIndex, sungNote) => {
         const rowIndex = notes.findIndex(n => n.note === sungNote);
-        const expectedNote = exercise[currentIndexRef.current];
+        // const expectedNote = exercise[currentIndexRef.current];
 
-        const newLandingY = -53 + 41.5 * (notes.findIndex(n => n.note === expectedNote) - 11);
-        const newLandingX = (colIndex + 0.75) * 75;
+        // Get the position of the transformed brick
+        const brickPosition = getBrickPosition(rowIndex, colIndex);
+        console.log(brickPosition);
 
-        setLandingY(newLandingY);
-        setLandingX(newLandingX);
+        // const newLandingY = -53 + 41.5 * (notes.findIndex(n => n.note === expectedNote) - 11);
+        // const newLandingX = (colIndex + 0.75) * 75;
+
+        setLandingY((12-rowIndex) * -brickPosition.height);
+        setLandingX(brickPosition.left-250);
         setConsecutiveCount(prevCount => {
             const newCount = prevCount + 1;
             if (newCount >= 10) {
@@ -143,6 +163,10 @@ const Exercise = () => {
         consecutiveCountRef.current = consecutiveCount;
     }, [id, currentIndex, consecutiveCount]);
 
+      // Set refs for each brick
+      const brickRefsArray = Array.from({ length: 12 }, () => Array(exercise.length).fill(null));
+      brickRefs.current = brickRefsArray;
+
     if (!exercise.length) return <div>Loading...</div>;
 
     return (
@@ -158,6 +182,7 @@ const Exercise = () => {
                                 return (
                                     <Brick 
                                     key={colIndex}
+                                    ref={(el) => brickRefs.current[rowIndex][colIndex] = el}
                                     color={brickColor}
                                     note={notes[rowIndex]?.note}
                                     isTransformed={isTransformed}
